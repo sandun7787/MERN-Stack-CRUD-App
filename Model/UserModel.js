@@ -1,8 +1,8 @@
-const mongoose = requier ("mongoose");
+const mongoose = require("mongoose");
 
-const Schema =mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const userSchema =new Schema ({
+const  userShema = new Schema({
     name:{
         type:String,
         required:true,
@@ -11,22 +11,17 @@ const userSchema =new Schema ({
     gmail:{
         type:String,
         required:true,
-
     },
 
-    age :{
+    age:{
         type:Number,
         required:true,
-       },
+    },
 
-    address:{
+    adreess:{
         type:String,
         required:true,
-    }
-
+    },
 });
 
-module.export =mongoose.mode;(
-    "Usermodel",
-    userSchema
-)
+module.exports = mongoose.model("UserModel" , userShema);
