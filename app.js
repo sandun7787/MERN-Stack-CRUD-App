@@ -1,14 +1,16 @@
-const mongoose = require("mongoose");
 const express = require("express");
+const mongoose = require("mongoose");
 const router = require("./Routes/UserRoute");
 require('dotenv').config();
 
 const app = express();
 
-app.use(express.json());
-app.use("/users", router);
+app.use(express.json()); // Middleware to parse JSON
+app.use("/users", router); // Register the `/users` route
 
-// Connect to MongoDB using the correct environment variable
+
+
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -16,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => {
     console.log("Connected to MongoDB successfully");
 
-    // Start the server after successful DB connection
+    // Start the server
     app.listen(3000, () => {
         console.log("Server is running on port 3000");
     });
