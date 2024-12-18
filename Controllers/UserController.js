@@ -81,10 +81,29 @@ const updateUser = async (req, res) => {
     }
 };
 
+// Delete a user by ID
+const deleteUser = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const user = await User.findByIdAndRemove(id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found or unable to delete details." });
+        }
+
+        return res.status(200).json({ message: "User deleted successfully" });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "An error occurred while deleting the user." });
+    }
+};
+
 // Export functions
 module.exports = {
     getAllUser,
     addUser,
     getById,
     updateUser,
+    deleteUser, // Correct function name
 };
